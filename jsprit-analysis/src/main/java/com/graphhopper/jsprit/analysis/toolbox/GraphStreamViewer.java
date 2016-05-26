@@ -76,7 +76,7 @@ public class GraphStreamViewer {
                 "	stroke-color: #333;" +
                 "   stroke-width: 2.0;" +
                 "}" +
-                "node.depot {" +
+                "node.warehouse {" +
                 " 	fill-color: #BD2C00;" +
                 "	size: 10px, 10px;" +
                 " 	shape: box;" +
@@ -144,7 +144,7 @@ public class GraphStreamViewer {
                 "	stroke-color: #333;" +
                 "   stroke-width: 2.0;" +
                 "}" +
-                "node.depot {" +
+                "node.warehouse {" +
                 " 	fill-color: #BD2C00;" +
                 "	size: 10px, 10px;" +
                 " 	shape: box;" +
@@ -213,7 +213,7 @@ public class GraphStreamViewer {
             "	stroke-color: #333;" +
             "   stroke-width: 2.0;" +
             "}" +
-            "node.depot {" +
+            "node.warehouse {" +
             " 	fill-color: #BD2C00;" +
             "	size: 10px, 10px;" +
             " 	shape: box;" +
@@ -421,21 +421,35 @@ public class GraphStreamViewer {
         JPanel panel = new JPanel();
         panel.setPreferredSize(new Dimension((int) (width * scaling), (int) (height * scaling)));
         panel.setBackground(Color.WHITE);
+        
+        JPanel subpanel1 = new JPanel();
+        subpanel1.setLayout(new FlowLayout());
+        subpanel1.setPreferredSize(new Dimension((int) (700 * scaling), (int) (40 * scaling)));
+        subpanel1.setBackground(Color.WHITE);
+        subpanel1.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
 
         JPanel subpanel = new JPanel();
         subpanel.setLayout(new FlowLayout());
         subpanel.setPreferredSize(new Dimension((int) (700 * scaling), (int) (40 * scaling)));
         subpanel.setBackground(Color.WHITE);
         subpanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
+        
+        
 
         Font font = Font.decode("couriernew");
 
-        JLabel jobs = new JLabel("jobs");
+        JLabel jobs = new JLabel("Tasks");
         jobs.setFont(font);
         jobs.setPreferredSize(new Dimension((int) (40 * scaling), (int) (25 * scaling)));
 
         int noJobs = 0;
         if (this.vrp != null) noJobs = this.vrp.getJobs().values().size();
+        
+        JFormattedTextField header = new JFormattedTextField(noJobs);
+        header.setFont(font);
+        header.setEditable(false);
+        header.setBorder(BorderFactory.createEmptyBorder());
+        header.setBackground(new Color(230, 230, 230));
 
         JFormattedTextField nJobs = new JFormattedTextField(noJobs);
         nJobs.setFont(font);
@@ -443,7 +457,7 @@ public class GraphStreamViewer {
         nJobs.setBorder(BorderFactory.createEmptyBorder());
         nJobs.setBackground(new Color(230, 230, 230));
 
-        JLabel costs = new JLabel("costs");
+        JLabel costs = new JLabel("Prices");
         costs.setFont(font);
         costs.setPreferredSize(new Dimension((int) (40 * scaling), (int) (25 * scaling)));
 
@@ -453,7 +467,7 @@ public class GraphStreamViewer {
         costsVal.setBorder(BorderFactory.createEmptyBorder());
         costsVal.setBackground(new Color(230, 230, 230));
 
-        JLabel vehicles = new JLabel("routes");
+        JLabel vehicles = new JLabel("Routes");
         vehicles.setFont(font);
         vehicles.setPreferredSize(new Dimension((int) (40 * scaling), (int) (25 * scaling)));
 //        vehicles.setForeground(Color.DARK_GRAY);
@@ -547,18 +561,18 @@ public class GraphStreamViewer {
     private void renderVehicle(Graph g, Vehicle vehicle, Label label) {
         String nodeId = makeId(vehicle.getId(), vehicle.getStartLocation().getId());
         Node vehicleStart = g.addNode(nodeId);
-        if (label.equals(Label.ID)) vehicleStart.addAttribute("ui.label", "depot");
+        if (label.equals(Label.ID)) vehicleStart.addAttribute("ui.label", "warehouse");
 //		if(label.equals(Label.ACTIVITY)) n.addAttribute("ui.label", "start");
         vehicleStart.addAttribute("x", vehicle.getStartLocation().getCoordinate().getX());
         vehicleStart.addAttribute("y", vehicle.getStartLocation().getCoordinate().getY());
-        vehicleStart.setAttribute("ui.class", "depot");
+        vehicleStart.setAttribute("ui.class", "warehouse");
 
         if (!vehicle.getStartLocation().getId().equals(vehicle.getEndLocation().getId())) {
             Node vehicleEnd = g.addNode(makeId(vehicle.getId(), vehicle.getEndLocation().getId()));
-            if (label.equals(Label.ID)) vehicleEnd.addAttribute("ui.label", "depot");
+            if (label.equals(Label.ID)) vehicleEnd.addAttribute("ui.label", "warehouse");
             vehicleEnd.addAttribute("x", vehicle.getEndLocation().getCoordinate().getX());
             vehicleEnd.addAttribute("y", vehicle.getEndLocation().getCoordinate().getY());
-            vehicleEnd.setAttribute("ui.class", "depot");
+            vehicleEnd.setAttribute("ui.class", "warehouse");
 
         }
     }

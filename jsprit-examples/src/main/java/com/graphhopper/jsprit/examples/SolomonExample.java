@@ -78,6 +78,10 @@ public class SolomonExample {
 		 */
         VehicleRoutingProblemSolution solution = new SelectBest().selectSolution(solutions);
 
+       // for(int i=0;i<solutions.size();i++){
+        //	System.out.println("Result  :"+i);
+     //  System.out.println("Content :"+solution.getRoutes().);
+      //  }
 
 		/*
          * print solution
@@ -91,7 +95,7 @@ public class SolomonExample {
 //		plotter.setBoundingBox(30, 0, 50, 20);
         plotter.plot("output/solomon_C101_solution.png", "C101");
 
-        new GraphStreamViewer(vrp, solution).setCameraView(30, 30, 0.25).labelWith(Label.ID).setRenderDelay(100).display();
+      //  new GraphStreamViewer(vrp, solution).setCameraView(30, 30, 0.25).labelWith(Label.ID).setRenderDelay(100).display();
 
     }
 

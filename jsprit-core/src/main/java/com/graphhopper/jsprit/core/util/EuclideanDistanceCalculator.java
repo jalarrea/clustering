@@ -18,11 +18,34 @@ package com.graphhopper.jsprit.core.util;
 
 
 public class EuclideanDistanceCalculator {
-
-    public static double calculateDistance(Coordinate coord1, Coordinate coord2) {
+  
+    /*public static double calculateDistance(Coordinate coord1, Coordinate coord2) {
         double xDiff = coord1.getX() - coord2.getX();
         double yDiff = coord1.getY() - coord2.getY();
         return Math.sqrt((xDiff * xDiff) + (yDiff * yDiff));
-    }
+    }*/
+	public static double calculateDistance(Coordinate coord1, Coordinate coord2) {
+		double theta = coord1.getX() - coord2.getX();
+		double dist = Math.sin(deg2rad(coord1.getY())) * Math.sin(deg2rad(coord2.getY())) + Math.cos(deg2rad(coord1.getY())) * Math.cos(deg2rad(coord2.getY())) * Math.cos(deg2rad(theta));
+		dist = Math.acos(dist);
+		dist = rad2deg(dist);
+		dist = dist * 60 * 1.1515;
+		dist = dist * 1.609344;	
+		return (dist);
+	}
+	
+	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	/*::	This function converts decimal degrees to radians						 :*/
+	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	private static double deg2rad(double deg) {
+		return (deg * Math.PI / 180.0);
+	}
+
+	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	/*::	This function converts radians to decimal degrees						 :*/
+	/*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+	private static double rad2deg(double rad) {
+		return (rad * 180 / Math.PI);
+	}
 
 }

@@ -16,14 +16,16 @@
  ******************************************************************************/
 package com.graphhopper.jsprit.core.util;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Coordinate {
 
     public static Coordinate newInstance(double x, double y) {
         return new Coordinate(x, y);
     }
-
+    @SerializedName("lng")
     private double x;
-
+    @SerializedName("lat")
     private double y;
 
     public Coordinate(double x, double y) {

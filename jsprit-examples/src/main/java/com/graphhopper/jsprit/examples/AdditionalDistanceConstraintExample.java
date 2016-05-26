@@ -174,12 +174,15 @@ public class AdditionalDistanceConstraintExample {
                 Coordinate fromCoord = vrpBuilder.getLocationMap().get(from);
                 Coordinate toCoord = vrpBuilder.getLocationMap().get(to);
                 double distance = EuclideanDistanceCalculator.calculateDistance(fromCoord, toCoord);
+                System.out.println("Consult of the distance :"+distance);
                 matrixBuilder.addTransportDistance(from, to, distance);
                 matrixBuilder.addTransportTime(from, to, (distance / 2.));
             }
         }
         return matrixBuilder.build();
     }
+    
+    
 
 
 }

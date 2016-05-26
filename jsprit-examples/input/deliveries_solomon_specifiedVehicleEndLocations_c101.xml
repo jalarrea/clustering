@@ -6,36 +6,7 @@
         <fleetSize>INFINITE</fleetSize>
         <fleetComposition>HOMOGENEOUS</fleetComposition>
     </problemType>
-    <vehicles>
-        <vehicle>
-            <id>solomonVehicle</id>
-            <typeId>solomonType</typeId>
-            <startLocation>
-                <id>0</id>
-                <coord x="40.0" y="50.0"/>
-            </startLocation>
-            <endLocation>
-                <id>101</id>
-                <coord x="70.0" y="10.0"/>
-            </endLocation>
-            <timeSchedule>
-                <start>0.0</start>
-                <end>1236.0</end>
-            </timeSchedule>
-            <returnToDepot>true</returnToDepot>
-        </vehicle>
-    </vehicles>
-    <vehicleTypes>
-        <type>
-            <id>solomonType</id>
-            <capacity>200</capacity>
-            <costs>
-                <fixed>1000.0</fixed>
-                <distance>1.0</distance>
-                <time>0.0</time>
-            </costs>
-        </type>
-    </vehicleTypes>
+
     <services>
         <service id="35" type="delivery">
             <locationId>[x=5.0][y=35.0]</locationId>

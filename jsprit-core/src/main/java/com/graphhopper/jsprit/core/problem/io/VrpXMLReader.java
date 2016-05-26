@@ -115,6 +115,7 @@ public class VrpXMLReader {
 
     public void read(String filename) {
         logger.debug("read vrp: {}", filename);
+        System.out.println("read vrp: {}"+ filename);
         XMLConfiguration xmlConfig = createXMLConfiguration();
         try {
             xmlConfig.load(filename);

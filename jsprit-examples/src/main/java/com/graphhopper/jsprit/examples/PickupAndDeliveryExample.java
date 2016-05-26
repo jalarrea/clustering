@@ -64,6 +64,8 @@ public class PickupAndDeliveryExample {
         new Plotter(vrp).plot("output/pd_solomon_r101.png", "pd_r101");
 
 
+        
+
 		/*
          * Define the required vehicle-routing algorithms to solve the above problem.
 		 *
